@@ -1,5 +1,5 @@
 env:
-  REGISTRY: public.ecr.aws/y8l5h6t0/helphack
+  REGISTRY: public.ecr.aws/y8l5h6t0
   IMAGE_NAME: "dbproxy"
 name: Build and Push
 on:
