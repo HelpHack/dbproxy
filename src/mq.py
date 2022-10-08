@@ -13,7 +13,7 @@ class MQ:
     # Get the connection string from the environment variable
     def get_url(self):
         user = os.environ.get('RABBITMQ_USER', 'guest')
-        password = os.environ.get('RABBITMQ_PASS', '')
+        password = os.environ.get('RABBITMQ_PASS', 'guest')
         url = os.environ.get('RABBITMQ_URL', 'localhost')
         return f'amqp://{user}:{password}@{url}/' if len(url) else None
 
