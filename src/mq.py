@@ -25,8 +25,8 @@ class MQ:
                 connection = pika.BlockingConnection(pika.URLParameters(url))
             else:
                 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
-        except:
-            Logger.error('RabbitMQ connection failed')
+        except Exception as e:
+            Logger.error(f'RabbitMQ connection failed: {e}')
             return
         channel = connection.channel()
         # Create a queue
