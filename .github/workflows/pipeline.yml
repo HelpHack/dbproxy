@@ -1,5 +1,5 @@
 env:
-  REGISTRY: public.ecr.aws/y8l5h6t0
+  REGISTRY: public.ecr.aws/y8l5h6t0/dbproxy
 name: Build and Push
 on:
   push:
