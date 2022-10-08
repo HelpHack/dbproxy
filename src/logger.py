@@ -31,7 +31,7 @@ class CustomFormatter(logging.Formatter):
         return formatter.format(record)
 
 class Logger:
-    logger = logging.getLogger()
+    logger = logging.getLogger('logger')
 
     def __init__(self):
         # Create the main logger

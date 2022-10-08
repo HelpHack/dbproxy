@@ -1,8 +1,16 @@
 from mongoengine import *
 
 class Address(Document):
-    street = StringField(required=True, max_length=100)
+    user = ReferenceField('User', required=True)
     city = StringField(required=True, max_length=50)
-    state = StringField(required=True, max_length=50)
-    zip = StringField(required=True, max_length=10)
     country = StringField(required=True, max_length=50)
+    address = StringField(required=True, max_length=100)
+    postcode = StringField(required=True, max_length=10)
+    location = GeoPointField()
+
+    meta = {'indexes': [
+        {'fields': ['$city', "$country", "$address", "$postcode"],
+         'default_language': 'english',
+         'weights': {'title': 10, 'content': 2}
+        }
+    ]}

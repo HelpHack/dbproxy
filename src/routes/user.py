@@ -1,4 +1,4 @@
 from schemas.user import User
 
-def getUsers():
-    return User.objects
+def get_users():
+    return User.objects().to_json()
