@@ -5,3 +5,4 @@ class User(Document):
     last_name = StringField(required=True, max_length=50)
     phone = StringField(required=True, max_length=20)
     location = GeoPointField(required=True)
+    is_volunteer = BooleanField(required=True)
