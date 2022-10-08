@@ -1,0 +1,25 @@
+env:
+  REGISTRY: public.ecr.aws/y8l5h6t0
+  IMAGE_NAME: "dbproxy"
+name: Build and Push
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - run: aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/y8l5h6t0
+      - run: docker build -t "${{ env.IMAGE_NAME }}".
+      - run: docker tag ${{ env.IMAGE_NAME }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+      - run: docker tag ${{ env.IMAGE_NAME }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${GITHUB_SHA::7}
+      - run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+      - run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${GITHUB_SHA::7}
