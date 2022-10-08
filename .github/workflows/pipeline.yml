@@ -26,7 +26,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - run: aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/y8l5h6t0
-      - run: docker build -t "${{ env.IMAGE_NAME }}" -f ./Dockerfile
+      - run: docker build -t "${{ env.IMAGE_NAME }}" .
       - run: docker tag ${{ env.IMAGE_NAME }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
       - run: docker tag ${{ env.IMAGE_NAME }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${GITHUB_SHA::7}
       - run: docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
