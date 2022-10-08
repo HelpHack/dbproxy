@@ -1,5 +1,4 @@
 import logging
-from colorlog import ColoredFormatter
 from pymongo import monitoring
 from mongoengine import *
 
