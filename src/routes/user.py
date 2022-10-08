@@ -1,4 +1,4 @@
-from src.schemas.user import User
+from schemas.user import User
 
 def getUsers():
-    pass
+    return User.objects
