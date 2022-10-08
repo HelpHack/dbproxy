@@ -14,7 +14,7 @@ class MQ:
     def get_url(self):
         user = os.environ.get('RABBITMQ_USER', 'guest')
         password = os.environ.get('RABBITMQ_PASS', 'guest')
-        url = os.environ.get('RABBIT_URL', 'localhost')
+        url = os.environ.get('RABBITMQ_URL', 'localhost')
         return f'amqp://{user}:{password}@{url}/' if len(url) else None
 
     def __init__(self):
