@@ -1,6 +1,6 @@
 env:
   REGISTRY: public.ecr.aws/y8l5h6t0
-  IMAGE_NAME: "router-js"
+  IMAGE_NAME: "dbproxy"
 name: Build and Push
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
