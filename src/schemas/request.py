@@ -15,10 +15,3 @@ class Request(Document):
         }
     ]}
 
-# class ShoppingListItem(EmbeddedDocument):
-#     item = StringField(required=True, max_length=100)
-#     ticked = BooleanField(required=True)
-
-# class ShoppingList(Request):
-#     items = ListField(EmbeddedDocumentField('ShoppingListItem'), required=True)
-
