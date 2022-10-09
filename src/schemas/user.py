@@ -4,7 +4,7 @@ class User(Document):
     first_name = StringField(required=True, max_length=50)
     last_name = StringField(required=True, max_length=50)
     phone = StringField(required=True, max_length=20)
-    location = GeoPointField()
+    location = ListField(ReferenceField('Address', required=True))
     is_volunteer = BooleanField(required=True)
 
     meta = {'indexes': [

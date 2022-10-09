@@ -9,4 +9,18 @@ def add_user(obj):
     return user.to_json()
 
 def get_user_by_id(id):
-    return User.objects(id=id).to_json()
+    return User.objects.aggregate([
+        {
+            '$match': {
+                '_id': id
+            }
+        },
+        {
+            "$lookup": {
+                "from": "address",
+                "localField": "locations",
+                "foreignField": "_id",
+                "as": "locations"
+            }
+        }
+    ]).to_json()

@@ -9,7 +9,29 @@ def add_request(obj):
     return request.to_json()
 
 def get_request_by_id(id):
-    return Request.objects(id=id).to_json()
+    return Request.objects.aggregate([
+        {
+            '$match': {
+                '_id': id
+            }
+        },
+        {
+            "$lookup": {
+                "from": "address",
+                "localField": "location",
+                "foreignField": "_id",
+                "as": "location"
+            }
+        },
+        {
+            "$lookup": {
+                "from": "user",
+                "localField": "requester",
+                "foreignField": "_id",
+                "as": "requester"
+            }
+        }
+    ]).to_json()
 
 def get_requests_by_volunteer_id(id):
     return Request.objects(volunteer=id).to_json()
